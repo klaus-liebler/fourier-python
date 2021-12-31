@@ -1,14 +1,13 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.signal import square
+import scipy.signal as ss
 from scipy.integrate import quad
-from math import* 
-#HalloS
-x=np.arange(-np.pi,np.pi,0.001) 
-y=square(x) 
-fc=lambda x:square(x)*cos(i*x)  
-fs=lambda x:square(x)*sin(i*x)
-n=100
+import math as m
+t=np.linspace(-5,+5,1000) 
+y=ss.square(t) 
+fc=lambda t:ss.square(t)*m.cos(i*t)  
+fs=lambda t:ss.square(t)*m.sin(i*t)
+n=50
 An=[] 
 Bn=[]
 sum=0
@@ -25,9 +24,9 @@ for i in range(n):
     if i==0.0:
         sum=sum+An[i]/2
     else:
-        sum=sum+(An[i]*np.cos(i*x)+Bn[i]*np.sin(i*x))
+        sum=sum+(An[i]*np.cos(i*t)+Bn[i]*np.sin(i*t))
 
-plt.plot(x,sum,'g')
-plt.plot(x,y,'r--')
+plt.plot(t,sum,'g')
+plt.plot(t,y,'r--')
 plt.title("Fourier-Reihe für Rechteck")
 plt.show()
